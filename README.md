@@ -24,7 +24,7 @@
 # 1. Створити та перейти до папки збірки
 mkdir build
 cd build
-
+```
 # 2. Згенерувати Makefile за допомогою CMake
 cmake ..
 
