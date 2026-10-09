@@ -1,22 +1,14 @@
-cmake_minimum_required(VERSION 3.20)
-project(lab1_packed_data LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.16)
+project(ieee754_lab LANGUAGES CXX)
 
-add_executable(lab1
-    src/main.cpp
-    src/packed_data.cpp
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Збираємо виконавчий файл із трьох модулів
+add_executable(ieee754_lab main.cpp ieee754.cpp ieee754.hpp)
+
+# Увімкнення обов'язкових попереджень компілятора
+target_compile_options(ieee754_lab PRIVATE
+    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic>
 )
-
-target_include_directories(lab1 PRIVATE include)
-target_compile_features(lab1 PRIVATE cxx_std_20)
-
-if (MSVC)
-    target_compile_options(lab1 PRIVATE /W4 /permissive-)
-else()
-    target_compile_options(lab1 PRIVATE
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wconversion
-        -Wsign-conversion
-    )
-endif()
