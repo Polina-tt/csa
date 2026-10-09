@@ -16,7 +16,7 @@
 cmake -S . -B build
 cmake --build build
 ./build/integer_arithmetic
-
+```
 
 ## Контрольні питання
 
