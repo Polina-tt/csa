@@ -1,22 +1,16 @@
-cmake_minimum_required(VERSION 3.20)
-project(lab1_packed_data LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.16)
+project(integer_arithmetic LANGUAGES CXX)
 
-add_executable(lab1
-    src/main.cpp
-    src/packed_data.cpp
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_executable(integer_arithmetic
+    main.cpp
+    arithmetic.cpp
 )
 
-target_include_directories(lab1 PRIVATE include)
-target_compile_features(lab1 PRIVATE cxx_std_20)
-
-if (MSVC)
-    target_compile_options(lab1 PRIVATE /W4 /permissive-)
-else()
-    target_compile_options(lab1 PRIVATE
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wconversion
-        -Wsign-conversion
-    )
-endif()
+target_compile_options(integer_arithmetic PRIVATE
+    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /permissive->
+)
